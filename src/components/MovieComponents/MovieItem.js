@@ -1,7 +1,7 @@
 import React from 'react';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import { Link } from 'react-router-dom';
 
 const MovieItem = ({ item, addOrRemoveFavourite, isFavourite }) => {
   return (
@@ -11,7 +11,9 @@ const MovieItem = ({ item, addOrRemoveFavourite, isFavourite }) => {
           <img src={item.Poster} alt='' />
         </div>
         <div className='card-back'>
-          <h1>{item.Title}</h1>
+          <Link to={`/${item.imdbID}`}>
+            <h1>{item.Title}</h1>
+          </Link>
           <ul>
             <li>
               <strong>Type:</strong> {item.Type}
@@ -22,10 +24,7 @@ const MovieItem = ({ item, addOrRemoveFavourite, isFavourite }) => {
             <li>
               <strong>imdbID:</strong> {item.imdbID}
             </li>
-
             <span className="fav-icon" onClick={() => addOrRemoveFavourite(item, isFavourite)}>{!!isFavourite ? <FavoriteIcon /> : <FavoriteBorderIcon />}</span>
-
-
           </ul>
         </div>
       </div>

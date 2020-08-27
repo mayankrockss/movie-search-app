@@ -14,6 +14,8 @@ body {
 
 a {
   text-decoration: none;
+  color: greenyellow;
+  cursor: pointer;
 }
 
 .container {
@@ -79,7 +81,6 @@ form {
 }
 
 .card {
-  cursor: pointer;
   background-color: transparent;
   height: 300px;
   perspective: 1000px;
@@ -140,6 +141,7 @@ nav {
   right: 0;
   z-index: 2;
 }
+
 .navbar a {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 8px;
@@ -147,12 +149,12 @@ nav {
   font-weight: 700;
   color: whitesmoke;
 }
+
 .navbar {
   list-style-type: none;
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: red;
   cursor: auto;
   display: flex;
   justify-content: space-between;
@@ -171,10 +173,42 @@ height: calc(100vh - 300px);
   display: block;
 }
 
+.details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.details-container img {
+  margin: 5px 2%;
+  height: 400px
+}
+
+.details {
+  margin: 0 10px;
+}
+
+.detail:first-child , .detail:first-child .detail-text {
+font-weight: 700;
+font-size: 1.5rem;
+}
+
+.detail {
+  padding: 5px 0;
+}
+
+.detail-key {
+  font-weight: 700;
+}
+
+.detail-text {
+  font-size: 14px;
+}
+
 .fav-icon{
   position: absolute;
-    top: 0;
-    right: 2%;
+  top: 0;
+  right: 2%;
+  cursor: pointer;
 }
 
 @media (max-width: 800px) {

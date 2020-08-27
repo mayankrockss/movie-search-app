@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import _ from 'lodash';
 import PageNotFound from './components/PageNotFound';
 import WebStorage from './WebStorage';
+import MovieDetails from './components/MovieComponents/MovieDetails';
 import './App.css';
 
 const App = () => {
@@ -19,12 +20,11 @@ const App = () => {
     const fetchItems = async () => {
       setIsLoading(true);
       let result = null;
+      
       if (query.length) {
-        result = await axios(
-          `http://www.omdbapi.com/?apikey=5ffea7a1&s=${query}&page=1`
-
-        )
+        result = await axios(`http://www.omdbapi.com/?apikey=5ffea7a1&s=${query}&page=1`)
       };
+
       if (result?.data?.Response === "False")
         alert(result?.data?.Error + ' Please try again with diffrent input!');
       if (result) setItems(result.data.Search);
@@ -36,7 +36,7 @@ const App = () => {
   useEffect(() => {
     setFavourites(JSON.parse(WebStorage.webStorage.getItem('Favourites') || '[]'));
   }, []);
-  
+
   useEffect(() => {
     WebStorage.webStorage.setItem('Favourites', JSON.stringify(favourites));
   }, [favourites])
@@ -44,7 +44,7 @@ const App = () => {
   const addOrRemoveFavourite = (item, isFavourite) => {
     if (isFavourite) {
       const updatedList = [...favourites];
-      updatedList.forEach((fav,i) => {
+      updatedList.forEach((fav, i) => {
         if (_.isEqual(item, fav)) {
           updatedList.splice(i, 1);
         }
@@ -67,6 +67,7 @@ const App = () => {
             <MovieGrid isLoading={isLoading} items={items} addOrRemoveFavourite={addOrRemoveFavourite} favourites={favourites} />
           </>
         </Route>
+        <Route path="/:id"><MovieDetails /></Route>
         <Route path='*'><PageNotFound /></Route>
       </Switch>
 
