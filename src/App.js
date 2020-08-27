@@ -22,7 +22,7 @@ const App = () => {
       let result = null;
       
       if (query.length) {
-        result = await axios(`http://www.omdbapi.com/?apikey=5ffea7a1&s=${query}&page=1`)
+        result = await axios(`https://www.omdbapi.com/?apikey=5ffea7a1&s=${query}&page=1`)
       };
 
       if (result?.data?.Response === "False")

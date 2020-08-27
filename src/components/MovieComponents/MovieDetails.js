@@ -7,7 +7,7 @@ function MovieDetails() {
     const { id } = useParams();
     useEffect(() => {
         const fetchItems = async () => {
-            const result = await axios(`http://www.omdbapi.com/?apikey=5ffea7a1&i=${id}`);
+            const result = await axios(`https://www.omdbapi.com/?apikey=5ffea7a1&i=${id}`);
             const { data: { Error, Response } = {} } = result || {};
 
             if (Response === "False")
@@ -19,6 +19,7 @@ function MovieDetails() {
     }, [id]);
 
     return (
+        Object.keys(details).length ? 
         <div className='details-container'>
             <img src={details.Poster} alt={details.Title} />
             <div className='details'>
@@ -30,7 +31,7 @@ function MovieDetails() {
                 )
                 )}
             </div>
-        </div>
+        </div> : <h1>loading...</h1>
     )
 }
 
