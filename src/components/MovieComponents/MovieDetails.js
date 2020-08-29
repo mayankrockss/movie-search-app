@@ -24,7 +24,7 @@ function MovieDetails() {
                 <img src={details.Poster} alt={details.Title} />
                 <div className='details'>
                     {Object.keys(details).map(key => (
-                        !['Ratings', 'Poster'].includes(key) && <p key={key} className='detail'>
+                        !['Ratings', 'Poster', 'Response'].includes(key) && <p key={key} className='detail'>
                             <span className='detail-key'>{key}</span> : &nbsp;
                     <span className='detail-text'>{details[key]}</span>
                         </p>
