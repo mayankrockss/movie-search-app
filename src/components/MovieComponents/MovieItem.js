@@ -4,11 +4,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
 
 const MovieItem = ({ item, addOrRemoveFavourite, isFavourite }) => {
+  const unknownPoster = "https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-300x225.jpg";
   return (
     <div className='card'>
       <div className='card-inner'>
         <div className='card-front'>
-          <img src={item.Poster} alt='' />
+          <img src={item.Poster !== 'N/A' ? item.Poster : unknownPoster} alt='poster' />
         </div>
         <div className='card-back'>
           <Link to={`/${item.imdbID}`}>

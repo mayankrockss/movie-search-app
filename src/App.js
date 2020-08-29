@@ -14,24 +14,29 @@ const App = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [query, setQuery] = useState('')
-  const [favourites, setFavourites] = useState([])
+  const [favourites, setFavourites] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchItems = async () => {
       setIsLoading(true);
       let result = null;
-      
+
       if (query.length) {
-        result = await axios(`https://www.omdbapi.com/?apikey=5ffea7a1&s=${query}&page=1`)
+        result = await axios(`https://www.omdbapi.com/?apikey=5ffea7a1&s=${query}&page=${currentPage}`)
       };
 
       if (result?.data?.Response === "False")
         alert(result?.data?.Error + ' Please try again with diffrent input!');
-      if (result) setItems(result.data.Search);
+      if (result) {
+        setItems(result.data);
+        setTotalPages(Math.ceil(result.data.totalResults / 10));
+      }
       setIsLoading(false);
     }
     fetchItems();
-  }, [query]);
+  }, [query, currentPage]);
 
   useEffect(() => {
     setFavourites(JSON.parse(WebStorage.webStorage.getItem('Favourites') || '[]'));
@@ -63,8 +68,8 @@ const App = () => {
         </Route>
         <Route path="/" exact>
           <>
-            <Search getQuery={(q) => setQuery(q)} />
-            <MovieGrid isLoading={isLoading} items={items} addOrRemoveFavourite={addOrRemoveFavourite} favourites={favourites} />
+            <Search getQuery={(q) => setQuery(q)} setCurrentPage={setCurrentPage} totalPages={totalPages} currentPage={currentPage} />
+            <MovieGrid isLoading={isLoading} items={items.Search} addOrRemoveFavourite={addOrRemoveFavourite} favourites={favourites} />
           </>
         </Route>
         <Route path="/:id"><MovieDetails /></Route>

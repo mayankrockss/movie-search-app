@@ -19,19 +19,19 @@ function MovieDetails() {
     }, [id]);
 
     return (
-        Object.keys(details).length ? 
-        <div className='details-container'>
-            <img src={details.Poster} alt={details.Title} />
-            <div className='details'>
-                {Object.keys(details).map(key => (
-                    !['Ratings', 'Poster'].includes(key) && <p key={key} className='detail'>
-                        <span className='detail-key'>{key}</span> : &nbsp;
+        Object.keys(details).length ?
+            <div className='details-container'>
+                <img src={details.Poster} alt={details.Title} />
+                <div className='details'>
+                    {Object.keys(details).map(key => (
+                        !['Ratings', 'Poster'].includes(key) && <p key={key} className='detail'>
+                            <span className='detail-key'>{key}</span> : &nbsp;
                     <span className='detail-text'>{details[key]}</span>
-                    </p>
-                )
-                )}
-            </div>
-        </div> : <h1>loading...</h1>
+                        </p>
+                    )
+                    )}
+                </div>
+            </div> : <h1>loading...</h1>
     )
 }
 
