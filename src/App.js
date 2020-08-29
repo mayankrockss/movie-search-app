@@ -72,7 +72,7 @@ const App = () => {
             <MovieGrid isLoading={isLoading} items={items.Search} addOrRemoveFavourite={addOrRemoveFavourite} favourites={favourites} />
           </>
         </Route>
-        <Route path="/:id"><MovieDetails /></Route>
+        <Route path="/movie/:id"><MovieDetails /></Route>
         <Route path='*'><PageNotFound /></Route>
       </Switch>
 

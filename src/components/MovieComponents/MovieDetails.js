@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function MovieDetails() {
+    const excludedKeys = ['Ratings', 'Poster', 'Response', 'imdbID'];
     const [details, setDetails] = useState({});
     const { id } = useParams();
     useEffect(() => {
@@ -24,9 +25,9 @@ function MovieDetails() {
                 <img src={details.Poster} alt={details.Title} />
                 <div className='details'>
                     {Object.keys(details).map(key => (
-                        !['Ratings', 'Poster', 'Response'].includes(key) && <p key={key} className='detail'>
-                            <span className='detail-key'>{key}</span> : &nbsp;
-                    <span className='detail-text'>{details[key]}</span>
+                        !excludedKeys.includes(key) && <p key={key} className='detail'>
+                            {key !== 'Title' && <span className='detail-key'>{key}</span>}
+                            <span className='detail-text'>{details[key]}</span>
                         </p>
                     )
                     )}

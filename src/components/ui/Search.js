@@ -14,7 +14,7 @@ const Search = ({ getQuery, setCurrentPage, totalPages, currentPage }) => {
   };
 
   const debounceSave = useCallback(
-    _.debounce((textVal, genreVal) => handleOnSearch(textVal, genreVal), 700),
+    _.debounce((textVal, genreVal) => handleOnSearch(textVal.trim(), genreVal), 700),
     [],
   );
 

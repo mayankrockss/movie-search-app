@@ -2,17 +2,17 @@ import React from 'react';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Link } from 'react-router-dom';
+import placeholderImg from '../../img/placeholder-img.jpg';
 
 const MovieItem = ({ item, addOrRemoveFavourite, isFavourite }) => {
-  const unknownPoster = "https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-300x225.jpg";
   return (
     <div className='card'>
       <div className='card-inner'>
         <div className='card-front'>
-          <img src={item.Poster !== 'N/A' ? item.Poster : unknownPoster} alt='poster' />
+          <img src={item.Poster !== 'N/A' ? item.Poster : placeholderImg} alt='poster' />
         </div>
         <div className='card-back'>
-          <Link to={`/${item.imdbID}`}>
+          <Link to={`/movie/${item.imdbID}`}>
             <h1>{item.Title}</h1>
           </Link>
           <ul>
