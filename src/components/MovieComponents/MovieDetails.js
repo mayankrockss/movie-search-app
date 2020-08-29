@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Spinner from '../ui/Spinner';
 import axios from 'axios';
 
 function MovieDetails() {
@@ -32,7 +33,7 @@ function MovieDetails() {
                     )
                     )}
                 </div>
-            </div> : <h1>loading...</h1>
+            </div> : <Spinner />
     )
 }
 
